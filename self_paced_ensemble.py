@@ -2,7 +2,7 @@
 """
 Created on Tue May 14 14:32:27 2019
 @author: ZhiningLiu1998
-mailto: zhining.liu@outlook.com / v-zhinli@microsoft.com
+mailto: znliu19@mails.jlu.edu.cn / zhining.liu@outlook.com
 """
 
 import numpy as np
@@ -50,14 +50,13 @@ class SelfPacedEnsemble():
     estimators_ : list of estimator
     |   The collection of fitted base estimators.
 
-
     Example:
     ```
     import numpy as np
     from sklearn import datasets
     from sklearn.tree import DecisionTreeClassifier
-    from src.self_paced_ensemble import SelfPacedEnsemble
-    from src.utils import (
+    from self_paced_ensemble import SelfPacedEnsemble
+    from utils import (
         make_binary_classification_target, imbalance_train_test_split)
 
     X, y = datasets.fetch_covtype(return_X_y=True)
