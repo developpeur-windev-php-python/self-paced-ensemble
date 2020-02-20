@@ -16,39 +16,42 @@ class SelfPacedEnsemble():
 
     Parameters
     ----------
+
     base_estimator : object, optional (default=sklearn.Tree.DecisionTreeClassifier())
-    |   The base estimator to fit on self-paced under-sampled subsets of the dataset. 
-    |   NO need to support sample weighting. 
-    |   Built-in `fit()`, `predict()`, `predict_proba()` methods are required.
+        The base estimator to fit on self-paced under-sampled subsets of the dataset. 
+        NO need to support sample weighting. 
+        Built-in `fit()`, `predict()`, `predict_proba()` methods are required.
 
     hardness_func :  function, optional 
-    |   (default=`lambda y_true, y_pred: np.absolute(y_true-y_pred)`)
-    |   User-specified classification hardness function
-    |   |   Parameters:
-    |   |   |   y_true: 1-d array-like, shape = [n_samples] 
-    |   |   |   y_pred: 1-d array-like, shape = [n_samples] 
-    |   |   Returns:
-    |   |   |   hardness: 1-d array-like, shape = [n_samples]
+        (default=`lambda y_true, y_pred: np.absolute(y_true-y_pred)`)
+        User-specified classification hardness function
+            Parameters:
+                y_true: 1-d array-like, shape = [n_samples] 
+                y_pred: 1-d array-like, shape = [n_samples] 
+            Returns:
+                hardness: 1-d array-like, shape = [n_samples]
 
     n_estimators :  integer, optional (default=10)
-    |   The number of base estimators in the ensemble.
+        The number of base estimators in the ensemble.
 
     k_bins :        integer, optional (default=10)
-    |   The number of hardness bins that were used to approximate hardness distribution.
+        The number of hardness bins that were used to approximate hardness distribution.
 
     random_state :  integer / RandomState instance / None, optional (default=None)
-    |   If integer, random_state is the seed used by the random number generator; 
-    |   If RandomState instance, random_state is the random number generator; 
-    |   If None, the random number generator is the RandomState instance used by 
-    |   `numpy.random`.
+        If integer, random_state is the seed used by the random number generator; 
+        If RandomState instance, random_state is the random number generator; 
+        If None, the random number generator is the RandomState instance used by 
+        `numpy.random`.
+
 
     Attributes
     ----------
+
     base_estimator_ : estimator
-    |   The base estimator from which the ensemble is grown.
+        The base estimator from which the ensemble is grown.
 
     estimators_ : list of estimator
-    |   The collection of fitted base estimators.
+        The collection of fitted base estimators.
 
     Example:
     ```
@@ -56,8 +59,7 @@ class SelfPacedEnsemble():
     from sklearn import datasets
     from sklearn.tree import DecisionTreeClassifier
     from self_paced_ensemble import SelfPacedEnsemble
-    from utils import (
-        make_binary_classification_target, imbalance_train_test_split)
+    from utils import make_binary_classification_target, imbalance_train_test_split
 
     X, y = datasets.fetch_covtype(return_X_y=True)
     y = make_binary_classification_target(y, 7, True)
@@ -128,7 +130,7 @@ class SelfPacedEnsemble():
                 )
                 # Marginal samples with highest hardness value -> kth bin
                 if i_bins == (self._k_bins-1):
-                    idx = idx | (hardness==hardness.max())
+                    idx = idx   (hardness==hardness.max())
                 bins.append(X_maj[idx])
                 ave_contributions.append(hardness[idx].mean())
 
